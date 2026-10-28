@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#3A1727">
+<title>邱小宝，生日快乐 ♡</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 7' shape-rendering='crispEdges'%3E%3Cg fill='%23E8749F'%3E%3Crect x='1' y='0' width='2' height='1'/%3E%3Crect x='5' y='0' width='2' height='1'/%3E%3Crect x='0' y='1' width='8' height='3'/%3E%3Crect x='1' y='4' width='6' height='1'/%3E%3Crect x='2' y='5' width='4' height='1'/%3E%3Crect x='3' y='6' width='2' height='1'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- 屏幕像素边框 -->
+<div class="frame" aria-hidden="true"></div>
+
+<!-- 顶栏 -->
+<header class="hud">
+  <div class="hud__left">
+    <span class="mono" id="hudPlayer">PLAYER 02</span>
+    <span class="mono hud__dot">·</span>
+    <span class="mono" id="hudName">邱小宝</span>
+    <span class="mono hud__slash">/</span>
+    <span class="mono" id="hudTag">LOVE +999</span>
+  </div>
+  <div class="hud__right">
+    <button class="pixbtn pixbtn--tiny" id="btnFull" type="button" aria-label="切换全屏">
+      <span class="ico" aria-hidden="true">⛶</span><span id="btnFullText">全屏沉浸</span>
+    </button>
+    <button class="pixbtn pixbtn--tiny" id="btnMusic" type="button" aria-label="播放背景音乐">
+      <span class="ico" aria-hidden="true">♫</span><span id="btnMusicText">音乐未开启</span>
+    </button>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============ 01 为你而来 ============ -->
+  <section class="scene" data-scene="1" data-tone="night" aria-label="开场">
+    <div class="sky" data-stars="34" data-moon="1" aria-hidden="true"></div>
+    <div class="scene__inner">
+      <p class="eyebrow reveal" style="--d:.05s" id="s1Eyebrow">♡ 你收到了一份神秘礼物 ♡</p>
+      <h1 class="display display--xl reveal" style="--d:.15s" id="s1Title">邱小宝，等你好久了。</h1>
+      <p class="sub reveal" style="--d:.3s" id="s1Sub"></p>
+
+      <div class="reveal" style="--d:.45s">
+        <button class="gift" id="giftBtn" type="button" aria-label="打开礼物">
+          <span class="gift__art" data-sprite="gift" data-px="13"></span>
+          <span class="gift__tag" id="giftTag">给邱小宝 ♡</span>
+        </button>
+      </div>
+
+      <p class="hint reveal" style="--d:.6s">
+        <span class="tri" aria-hidden="true">▶</span><span id="s1Hint"></span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 02 今日限定主角 ============ -->
+  <section class="scene" data-scene="2" data-tone="day" aria-label="生日快乐">
+    <div class="sky sky--day" data-clouds="4" aria-hidden="true"></div>
+    <div class="balloons" aria-hidden="true">
+      <span class="balloon balloon--1"></span>
+      <span class="balloon balloon--2"></span>
+      <span class="balloon balloon--3"></span>
+    </div>
+    <div class="scene__inner scene__inner--tight">
+      <p class="eyebrow reveal" style="--d:.05s" id="s2Eyebrow"></p>
+      <h1 class="display display--xl reveal" style="--d:.12s">
+        <span id="s2Title">生日快乐</span><span class="boom" id="s2Boom">！</span>
+      </h1>
+      <p class="display-sub reveal" style="--d:.22s" id="s2Sub"></p>
+      <div class="bunny-stage reveal" style="--d:.3s">
+        <span class="bunny" data-sprite="bunny" data-px="11"></span>
+      </div>
+      <div class="chips reveal" style="--d:.4s" id="s2Chips"></div>
+      <p class="hint hint--soft reveal" style="--d:.55s" id="s2Hint"></p>
+    </div>
+    <div class="stickers" aria-hidden="true">
+      <span class="sticker sticker--1" id="s2Stick1"></span>
+      <span class="sticker sticker--2" id="s2Stick2"></span>
+    </div>
+  </section>
+
+  <!-- ============ 03 一点小调皮 ============ -->
+  <section class="scene" data-scene="3" data-tone="day" aria-label="小问题">
+    <div class="sky sky--day" data-clouds="3" aria-hidden="true"></div>
+    <div class="scene__inner scene__inner--narrow">
+      <p class="eyebrow reveal" style="--d:.05s" id="s3Eyebrow"></p>
+
+      <div class="bunny-stage bunny-stage--ask reveal" style="--d:.15s">
+        <span class="bunny" id="s3Bunny" data-sprite="bunny" data-px="10"></span>
+        <span class="bubble" id="s3Bubble" aria-live="polite"></span>
+      </div>
+
+      <h2 class="display display--lg reveal" style="--d:.25s" id="s3Question"></h2>
+
+      <div class="answers reveal" style="--d:.35s" id="s3Answers"></div>
+      <p class="reply-line" id="s3Reply" aria-live="polite"></p>
+      <button class="linkbtn" id="s3Cta" type="button" hidden></button>
+    </div>
+  </section>
+
+  <!-- ============ 04 愿望会发光 ============ -->
+  <section class="scene" data-scene="4" data-tone="night" aria-label="许愿">
+    <div class="sky" data-stars="30" data-moon="1" aria-hidden="true"></div>
+    <div class="scene__inner">
+      <p class="eyebrow reveal" style="--d:.05s" id="s4Eyebrow"></p>
+      <h2 class="display display--lg reveal" style="--d:.12s" id="s4Title"></h2>
+      <p class="sub reveal" style="--d:.22s" id="s4Sub"></p>
+
+      <div class="cake-stage reveal" style="--d:.3s">
+        <span class="cake" data-sprite="cake" data-px="11"></span>
+        <span class="flame" id="flame" data-sprite="flame" data-px="7"></span>
+        <span class="smoke" id="smoke" aria-hidden="true"></span>
+      </div>
+
+      <button class="pixbtn pixbtn--wide reveal" style="--d:.4s" id="holdBtn" type="button"></button>
+      <div class="holdbar reveal" style="--d:.45s" aria-hidden="true"><i id="holdFill"></i></div>
+      <p class="hint reveal" style="--d:.5s" id="s4Hint"></p>
+      <button class="linkbtn" id="s4Cta" type="button" hidden></button>
+    </div>
+  </section>
+
+  <!-- ============ 05 认真喜欢你 ============ -->
+  <section class="scene" data-scene="5" data-tone="night" aria-label="卡片">
+    <div class="sky" data-stars="26" data-moon="1" aria-hidden="true"></div>
+    <div class="cards" id="cards"></div>
+    <button class="arrow arrow--prev" id="cardPrev" type="button" aria-label="上一张">◀</button>
+    <button class="arrow arrow--next" id="cardNext" type="button" aria-label="下一张">▶</button>
+  </section>
+
+  <!-- ============ 06 故事未完待续 ============ -->
+  <section class="scene" data-scene="6" data-tone="day" aria-label="结尾">
+    <div class="sky sky--day" data-clouds="4" aria-hidden="true"></div>
+    <div class="scene__inner scene__inner--tight">
+      <p class="eyebrow reveal" style="--d:.05s" id="s6Eyebrow"></p>
+      <h2 class="display display--lg reveal" style="--d:.12s" id="s6Title"></h2>
+
+      <div class="hug reveal" style="--d:.22s" id="hug">
+        <span class="bunny bunny--l" data-sprite="bunny" data-px="12"></span>
+        <span class="bunny bunny--r" data-sprite="bunny" data-px="12"></span>
+        <span class="hug__hearts" id="hugHearts" aria-hidden="true"></span>
+      </div>
+
+      <p class="lines reveal" style="--d:.32s" id="s6Lines"></p>
+      <button class="pixbtn pixbtn--solid reveal" style="--d:.42s" id="hugBtn" type="button"></button>
+      <p class="hint reveal" style="--d:.5s" id="s6Hint" aria-live="polite"></p>
+      <button class="linkbtn reveal" style="--d:.58s" id="readAgain" type="button"></button>
+    </div>
+  </section>
+
+</main>
+
+<!-- 底栏 -->
+<footer class="bar">
+  <div class="bar__left">
+    <span class="mono" id="barIndex">01</span>
+    <span class="mono bar__slash">/</span>
+    <span id="barTitle">为你而来</span>
+  </div>
+  <nav class="dots" id="dots" aria-label="章节跳转"></nav>
+  <div class="bar__right" id="barRight">给邱小宝的那一份 ♡</div>
+</footer>
+
+<!-- 信 -->
+<div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-labelledby="letterGreet" hidden>
+  <div class="letter">
+    <button class="letter__close" id="letterClose" type="button" aria-label="关闭"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 2L10 10M10 2L2 10" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></button>
+    <p class="letter__eyebrow" id="letterEyebrow"></p>
+    <h3 class="letter__greet" id="letterGreet"></h3>
+    <div class="letter__body" id="letterBody"></div>
+    <p class="letter__sign" id="letterSign"></p>
+  </div>
+</div>
+
+<audio id="bgm" loop preload="none"></audio>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/pixel.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
