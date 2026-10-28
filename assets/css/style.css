@@ -337,6 +337,7 @@ button {
 
 .sub {
   margin-top: 16px;
+  white-space: pre-line;
   font-size: clamp(14px, 1.9vw, 16.5px);
   line-height: 1.9;
   color: var(--fg-dim);
@@ -735,7 +736,7 @@ button {
 .cards {
   position: relative;
   width: min(880px, 100%);
-  height: min(420px, 60vh);
+  height: min(470px, 64vh);
   z-index: 2;
 }
 
@@ -745,7 +746,10 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: safe center;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232, 116, 159, .45) transparent;
   gap: 16px;
   padding: 34px 40px;
   text-align: center;
@@ -790,6 +794,18 @@ button {
   color: var(--ink-soft);
   max-width: 560px;
 }
+
+.card__body {
+  font-size: clamp(13px, 1.7vw, 15px);
+  line-height: 1.95;
+  letter-spacing: .01em;
+  color: var(--ink-soft);
+  text-align: left;
+  max-width: 620px;
+}
+
+.card__body p { margin-bottom: 9px; }
+.card__body p:last-child { margin-bottom: 0; }
 
 .card__btn { margin-top: 4px; }
 
@@ -886,10 +902,10 @@ button {
 .letter {
   position: relative;
   width: min(720px, 100%);
-  max-height: min(76vh, 720px);
+  max-height: min(88vh, 860px);
   display: flex;
   flex-direction: column;
-  padding: 34px 38px 30px;
+  padding: 30px 34px 26px;
   text-align: left;
   color: #5E3547;
   background: var(--paper);
@@ -938,8 +954,8 @@ button {
 .letter__body {
   overflow-y: auto;
   padding-right: 8px;
-  font-size: 15px;
-  line-height: 1.95;
+  font-size: 14.5px;
+  line-height: 1.85;
   letter-spacing: .02em;
   color: #5E3547;
   scrollbar-width: thin;
@@ -949,7 +965,7 @@ button {
 .letter__body::-webkit-scrollbar { width: 6px; }
 .letter__body::-webkit-scrollbar-thumb { background: rgba(232, 116, 159, .55); }
 
-.letter__body p { margin-bottom: 15px; }
+.letter__body p { margin-bottom: 12px; }
 
 .letter__body em {
   font-style: normal;
@@ -957,7 +973,7 @@ button {
 }
 
 .letter__sign {
-  margin-top: 18px;
+  margin-top: 14px;
   text-align: right;
   font-size: 14px;
   line-height: 1.9;
@@ -1001,7 +1017,7 @@ button {
   .dot.is-active { width: 22px; }
   .scene { padding: 62px 14px 70px; }
   .card { padding: 24px 18px; }
-  .cards { height: min(430px, 58vh); }
+  .cards { height: min(470px, 62vh); }
   /* 手机端用左右滑动翻页，隐藏两侧箭头 */
   .arrow { display: none; }
   .balloons { display: none; }
