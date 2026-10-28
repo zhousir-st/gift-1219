@@ -49,8 +49,8 @@
 
   function countdownText() {
     var n = daysToBirthday();
-    if (n > 0) return '还有 <b>' + n + '</b> 天，你就 ' + F.birthdayAge + ' 岁了';
-    if (n === 0) return '今天，你 ' + F.birthdayAge + ' 岁了';
+    if (n > 0) return '再过 <b>' + n + '</b> 天，你就满 ' + F.birthdayAge + ' 岁了';
+    if (n === 0) return '今天，你就满 ' + F.birthdayAge + ' 岁了';
     return F.birthdayAge + ' 岁生日快乐';
   }
 
@@ -214,13 +214,16 @@
     host.innerHTML = scene.cards.map(function (c, i) {
       var meta = pad2(i + 1) + ' / ' + pad2(scene.cards.length) + ' · ' + scene.meta;
       var env = c.envelope ? '<span class="card__env">' + PA.svg('envelope', 8) + '</span>' : '';
+      var body = (c.body && c.body.length)
+        ? '<div class="card__body">' + c.body.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div>'
+        : '';
+      var sub = c.sub ? '<p class="card__sub">' + c.sub + '</p>' : '';
       var btn = c.button ? '<button class="pixbtn card__btn" type="button" data-card-btn="' + i + '">' +
         c.button + '</button>' : '';
       return '<article class="card" data-card="' + i + '">' +
         '<p class="card__meta">' + meta + '</p>' +
         '<h3 class="card__title">' + c.title + '</h3>' +
-        '<p class="card__sub">' + c.sub + '</p>' +
-        env + btn +
+        sub + body + env + btn +
         '</article>';
     }).join('');
 
@@ -621,12 +624,15 @@
       if (e.target === $('#letterModal')) closeLetter();
     });
 
-    /* 支持 #2 ~ #6 / #letter 直接定位（方便预览和分享某一幕） */
+    /* 支持 #2 ~ #6 / #5-3（第 5 幕第 3 张卡片）/ #letter 直接定位 */
     var hash = (location.hash || '').replace('#', '');
     if (hash === 'letter') {
       go(5);
       showCard(state.card);
       openLetter('end');
+    } else if (/^5-[1-6]$/.test(hash)) {
+      go(5);
+      showCard(parseInt(hash.split('-')[1], 10) - 1);
     } else if (/^[1-6]$/.test(hash)) {
       go(parseInt(hash, 10));
     } else {
