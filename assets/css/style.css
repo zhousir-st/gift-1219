@@ -1002,6 +1002,45 @@ button {
   from { opacity: 0; translate: -50% 8px; }
 }
 
+/* ---------- 音乐提示 ---------- */
+.music-tip {
+  position: fixed;
+  left: 50%;
+  bottom: 84px;
+  translate: -50% 12px;
+  z-index: 55;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 15px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: .05em;
+  color: var(--ink);
+  background: var(--cream);
+  border: 2px solid rgba(107, 59, 78, .62);
+  box-shadow: 3px 3px 0 rgba(43, 10, 22, .22);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s var(--ease), translate .35s var(--ease);
+}
+
+.music-tip.is-show {
+  opacity: 1;
+  translate: -50% 0;
+  animation: tipPulse 2.6s ease-in-out infinite;
+}
+
+.music-tip span { color: var(--rose-deep); }
+
+@keyframes tipPulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@media (max-width: 720px) {
+  .music-tip { bottom: 72px; font-size: 11px; padding: 7px 12px; }
+}
 /* ---------- 小屏适配 ---------- */
 @media (max-width: 720px) {
   .hud { padding: 0 12px; height: 54px; }
