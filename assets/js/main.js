@@ -465,19 +465,36 @@
 
     function prepare() {
       if (!bgm.dataset.ready) {
-        bgm.src = 'assets/music/bgm.mp3';
+        bgm.src = 'assets/music/bgm.mp3?v=20261029';
         bgm.dataset.ready = '1';
         bgm.volume = 0.55;
       }
     }
 
+    /* 音乐状态实时反映到按钮文字上 */
+    bgm.addEventListener('playing', function () {
+      btnMusicText.textContent = S.hud.musicOn;
+      hideTip();
+    });
+    bgm.addEventListener('pause', function () {
+      btnMusicText.textContent = S.hud.musicOff;
+    });
+
+    /* 底部小提示：还没开始放音乐时提醒她点一下 */
+    var tip = document.createElement('div');
+    tip.className = 'music-tip';
+    tip.innerHTML = '<span aria-hidden="true">♪</span> 点一下屏幕，音乐就来';
+    document.body.appendChild(tip);
+    function hideTip() { tip.classList.remove('is-show'); }
+    setTimeout(function () { if (bgm.paused) tip.classList.add('is-show'); }, 2200);
+
     /* 她第一次点屏幕（或按键）就把音乐放起来；静音失败不打扰 */
     function autoStart() {
       prepare();
-      if (!bgm.paused) return;
+      if (!bgm.paused) { hideTip(); return; }
       var p = bgm.play();
       if (p && p.then) {
-        p.then(function () { btnMusicText.textContent = S.hud.musicOn; })
+        p.then(function () { btnMusicText.textContent = S.hud.musicOn; hideTip(); })
           .catch(function () { /* 没放音乐文件时静默失败 */ });
       }
     }
@@ -492,6 +509,10 @@
     }
     document.addEventListener('pointerdown', onFirstTouch);
     document.addEventListener('keydown', onFirstTouch);
+    document.addEventListener('touchstart', onFirstTouch, { passive: true });
+
+    /* 页面一打开先试着放一次（有些浏览器/已授权站点会直接允许） */
+    setTimeout(autoStart, 400);
 
     btnMusic.addEventListener('click', function () {
       prepare();
